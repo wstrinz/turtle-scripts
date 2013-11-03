@@ -57,7 +57,6 @@ for sn = 1, snake_times, 1 do
 
   fdig()
   fdig()
-  fdig()
 
   turnDir(current_dir)
   fdig()
