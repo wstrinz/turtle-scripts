@@ -2,8 +2,20 @@ local dirs = {
   u = function () return turtle.up() end,
   d = function () return turtle.down() end,
   f = function () return turtle.forward() end,
+  F = function ()
+    while turtle.detect() do
+      turtle.dig()
+    end
+    return turtle.forward()
+  end,
   b = function () return turtle.back() end,
   i = function () return turtle.dig() end,
+  I = function ()
+    while turtle.detect() do
+      turtle.dig()
+    end
+    return true
+  end,
   o = function () return turtle.digDown() end,
   p = function () return turtle.digUp() end,
   a = function () return turtle.place() end,
@@ -17,8 +29,27 @@ end
 
 arg = { ... }
 
-local str = arg[1]:gsub("(%d+)(%l+)",
+local str = table.concat(arg, " ")
+
+str = str:gsub("(%d+)%((.+)%)",
   function(n,c) return c:rep(n) end)
+
+-- print(str)
+
+str = str:gsub("%s(%a)","1%1")
+
+-- print(str)
+
+str = str:gsub("%s(%d)","%1")
+
+
+
+-- print(str)
+
+str = str:gsub("(%d+)(%a+)",
+  function(n,c) return c:rep(n) end)
+
+-- print(str)
 
 for dir in str:gmatch "." do
   go_dir(dir)
