@@ -1,6 +1,20 @@
 local dirs = {
   u = function () return turtle.up() end,
+  U = function ()
+    while turtle.detectUp() do
+      turtle.digUp()
+    end
+    turtle.up()
+    return true
+  end,
   d = function () return turtle.down() end,
+  D = function ()
+    while turtle.detectDown() do
+      turtle.digDown()
+    end
+    turtle.down()
+    return true
+  end,
   f = function () return turtle.forward() end,
   F = function ()
     while turtle.detect() do
